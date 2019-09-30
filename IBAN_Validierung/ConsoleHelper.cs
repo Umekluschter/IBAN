@@ -9,10 +9,10 @@ namespace IBAN_Validierung
         public void IBAN_Check()
         {
             while (true) {
-                Console.WriteLine("Geben Sie den schweizer IBAN-Code ein:");
+                Console.WriteLine("Geben Sie den IBAN-Code ein:");
                 var iban = Console.ReadLine();
 
-                if (iban.Length == 21)
+                if (iban.Length <= 34)
                 {
                     if (!Char.IsDigit(iban[0]) && !Char.IsDigit(iban[1]))
                     {
@@ -25,7 +25,7 @@ namespace IBAN_Validierung
 
                         var ziffernfolge = Convert.ToString(ziffer1) + "" + Convert.ToString(ziffer2) + "00";
 
-                        for (int i = 2; i < 21; i++) {
+                        for (int i = 2; i < iban.Length; i++) {
                             if (Char.IsDigit(iban[i]))
                             {
 
@@ -63,18 +63,18 @@ namespace IBAN_Validierung
                             }
                             else
                             {
-                                Console.WriteLine("Falsche Eingabe!\n");
+                                Console.WriteLine("Falsche Eingabe! IBAN-Check fehlgeschlagen.\n");
                             }                            
                         }
                         else
                         {
-                            Console.WriteLine("Falsche Eingabe!\n");
+                            Console.WriteLine("Falsche Eingabe! IBAN enthält Buchstaben.\n");
                         }                        
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Falsche Eingabe!\n");
+                    Console.WriteLine("Falsche Eingabe! IBAN zu lang.\n");
                 }
             }
         }
